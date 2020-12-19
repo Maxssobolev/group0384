@@ -1,5 +1,5 @@
 {
-  "proxy": "http://group0384.ru:3555/",
+  "proxy": "http://localhost:3555/",
   "name": "groupsite",
   "version": "0.1.0",
   "private": true,
