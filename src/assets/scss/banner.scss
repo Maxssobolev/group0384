@@ -1,0 +1,84 @@
+#banner {
+  color: white;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+#daytimetable {
+  @media (max-width: 360px) {
+    font-size: 0.9em;
+  }
+}
+
+.top-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  #viewWholeTimeTable-button {
+    background: #499cc3;
+    width: 30px;
+    line-height: 100%;
+    font-size: 18px;
+    padding: 0;
+    font-weight: bold;
+    height: 30px;
+    border-radius: 50%;
+    &:hover,
+    &:focus {
+      outline: none;
+      border: none;
+      box-shadow: none;
+    }
+  }
+}
+.calendar-wrapper {
+  display: flex;
+  align-items: center;
+  @media (max-width: 404px) {
+    font-size: 0.9em;
+  }
+  @media (max-width: 486px) {
+    font-size: 0.85em;
+  }
+}
+.calendar {
+  width: fit-content;
+  padding: 10px;
+  font-size: 0.95em;
+  a {
+    color: inherit;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .prevSub,
+  .nextSub {
+    font-size: 0.85em;
+    color: #bdbdbd;
+    display: flex;
+    align-items: center;
+  }
+  .currentSub {
+    display: flex;
+    align-items: center;
+    .now {
+      font-size: 0.785em;
+      //font-style: italic;
+      color: #736d6d;
+      margin-left: 8px;
+    }
+  }
+  .time {
+    text-align: center;
+    display: block;
+    width: 100px;
+    font-size: 0.9em;
+    @media (max-width: 486px) {
+      width: 80px;
+    }
+  }
+  .name {
+    display: block;
+  }
+}

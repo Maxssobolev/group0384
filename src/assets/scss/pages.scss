@@ -1,0 +1,525 @@
+.container {
+  @media (max-width: 768px) {
+    max-width: 90%;
+  }
+}
+
+.page {
+  //Общие стили всех страниц
+  width: 75%;
+  margin: 0 auto;
+  padding-bottom: 50px;
+  //------------------------
+  &-admin {
+    //Стили для админ-панели
+
+    .main_post_create {
+      //Стили формы добавления записи на главную страницу
+      form {
+        display: flex;
+        flex-direction: column;
+
+        input,
+        textarea,
+        select {
+          width: 100%;
+          margin: 10px 0;
+          padding: 0 10px;
+        }
+      }
+    }
+
+    .homework_create {
+      //Стили формы добавления домашних работ
+
+      form {
+        display: flex;
+        flex-direction: column;
+
+        input,
+        textarea,
+        select {
+          width: 100%;
+          margin: 10px 0;
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+
+  &-view {
+    //Стили для страницы обзора поста
+    .title {
+      font-size: 1.5em;
+      font-weight: bold;
+      text-align: center;
+      border-bottom: 1px solid gray;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .date {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 0.85em;
+    }
+  }
+
+  &-subdirect {
+    //Стили для страницы обзора предмета
+    [role='tablist'] {
+      margin-bottom: 20px;
+      a {
+        color: inherit;
+      }
+    }
+    .title {
+      font-size: 1.5em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    &__teacher {
+      margin-bottom: 30px;
+      span {
+        margin-left: 10px;
+      }
+    }
+
+    &__linksBlock {
+      [aria-controls] {
+        width: 100%;
+        height: 59px;
+        margin-bottom: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 0 15px;
+        color: black;
+        border: 1px dotted;
+        border-right: 1px solid gray;
+        border-left: 1px solid gray;
+        box-sizing: border-box;
+        background: white;
+        &:focus {
+          outline: none;
+        }
+        &:hover {
+          text-decoration: none;
+          color: black;
+          border-right: 10px solid #ffb732;
+          border-left: 10px solid #ffb732;
+        }
+        transition: 0.2s ease-out;
+
+        span {
+          width: 100%;
+          font-size: 0.9em;
+        }
+      }
+      ol {
+        padding-left: 20px;
+        margin: 0;
+      }
+      a {
+        color: #499cc3;
+        &:hover {
+          text-decoration: none;
+          color: gray;
+        }
+      }
+    }
+
+    &__hwBlock {
+      display: flex;
+      flex-direction: column;
+      [aria-controls] {
+        width: 100%;
+        height: 59px;
+        margin-bottom: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 0 15px;
+        color: black;
+        border: 1px dotted;
+        border-right: 1px solid gray;
+        border-left: 1px solid gray;
+        box-sizing: border-box;
+        background: white;
+        &:focus {
+          outline: none;
+        }
+        &:hover {
+          text-decoration: none;
+          color: black;
+          border-right: 10px solid #ffb732;
+          border-left: 10px solid #ffb732;
+        }
+        transition: 0.2s ease-out;
+
+        span {
+          width: 100%;
+          font-size: 0.9em;
+        }
+      }
+
+      #collapsed-block {
+        margin-bottom: 20px;
+      }
+      a {
+        color: inherit;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      .info-block {
+        overflow: hidden;
+        margin-bottom: 10px;
+        padding: 20px;
+        box-shadow: 1px 1px 3px grey;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        &__title {
+          display: block;
+          width: 100%;
+          font-size: 1.1em;
+          font-weight: bold;
+          margin-top: -5px;
+          margin-bottom: 20px;
+        }
+        &__date {
+          display: block;
+          width: 100%;
+          margin-top: 10px;
+          font-style: italic;
+          text-align: right;
+          font-size: 0.85em;
+          &_deadline {
+            margin-top: 0;
+          }
+        }
+        &__content {
+          display: block;
+          height: 100%;
+        }
+      }
+    }
+
+    &__lectorBlock {
+      .info-block__date {
+        margin-top: 10px;
+      }
+      [aria-controls] {
+        width: 100%;
+        height: 59px;
+        margin-bottom: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 0 15px;
+        color: black;
+        border: 1px dotted;
+        border-right: 1px solid gray;
+        border-left: 1px solid gray;
+        box-sizing: border-box;
+        background: white;
+        &:focus {
+          outline: none;
+        }
+        &:hover {
+          text-decoration: none;
+          color: black;
+          border-right: 10px solid #ffb732;
+          border-left: 10px solid #ffb732;
+        }
+        transition: 0.2s ease-out;
+      }
+
+      .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .col {
+        min-width: 300px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+
+        min-height: 213px;
+        border: 1px solid #dee2e6;
+        margin-bottom: 20px;
+        a {
+          color: inherit;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+        .lec_title {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    //mobile for Tabs in subdirect
+    @media (max-width: 768px) {
+      .nav-tabs {
+        border-bottom: 0;
+      }
+
+      .nav-link {
+        border: 1px solid gray;
+        width: 100%;
+        margin-bottom: 10px;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+      }
+      .active {
+        border-color: #bbbbbb !important;
+      }
+    }
+  }
+
+  &-home {
+    //Стили для страницы "Главная"
+    & > div {
+      max-width: 30%;
+      @media (max-width: 992px) {
+        max-width: 47%;
+      }
+      @media (max-width: 550px) {
+        max-width: 100%;
+      }
+    }
+
+    width: 85%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .new-label {
+      display: block;
+      width: 85px;
+      border-radius: 6px 6px 0 0;
+      color: white;
+      margin-left: -1px;
+      font-size: 15px;
+      text-align: center;
+
+      &_event {
+        background: #499cc366;
+      }
+      &_important {
+        background: #c3654966;
+      }
+      &_useful {
+        background: #72c34966;
+      }
+    }
+
+    .actual-date {
+      border-radius: 0 10px 0 0;
+      color: #7d7d7d;
+      margin-left: -5px;
+      font-size: 15px;
+      padding: 0 10px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      div {
+        width: 100%;
+      }
+    }
+    a {
+      color: inherit;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .info-block {
+      overflow: hidden;
+      margin-bottom: 10px;
+      padding: 20px;
+      box-shadow: 1px 1px 3px grey;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 20px;
+
+      @media (min-width: 551px) {
+        height: 370px;
+        &:hover {
+          box-shadow: 0px 0px 30px 0px #c7e7b6 !important;
+        }
+        transition: 0.5s;
+      }
+
+      &__title {
+        display: block;
+        width: 100%;
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-top: -5px;
+        margin-bottom: 20px;
+      }
+      &__date {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        font-style: italic;
+        text-align: right;
+        font-size: 0.85em;
+      }
+      &__content {
+        display: block;
+        height: 100%;
+      }
+    }
+  }
+
+  &-directions {
+    //Стили страницы News (Обьявления)
+    .list-item {
+      height: 50px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 15px;
+      color: black;
+      border: 1px dotted;
+      border-right: 1px solid gray;
+      border-left: 1px solid gray;
+      box-sizing: border-box;
+
+      &__date {
+        text-transform: uppercase;
+      }
+
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: black;
+        position: relative;
+        z-index: 1;
+        line-height: 50px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      &:hover {
+        text-decoration: none;
+        color: black;
+        border-right: 10px solid #ffb732;
+        border-left: 10px solid #ffb732;
+      }
+      transition: 0.2s ease-out;
+
+      &:hover {
+        cursor: pointer;
+
+        box-shadow: none;
+      }
+    }
+  }
+
+  &-homework {
+    display: flex;
+    flex-direction: column;
+    a {
+      color: inherit;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .info-block {
+      overflow: hidden;
+      margin-bottom: 10px;
+      padding: 20px;
+      box-shadow: 1px 1px 3px grey;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      &__title {
+        display: block;
+        width: 100%;
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-top: -5px;
+        margin-bottom: 20px;
+        span {
+          font-size: 0.9em;
+          text-transform: lowercase;
+          font-weight: normal;
+        }
+      }
+      &__date {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        font-style: italic;
+        text-align: right;
+        font-size: 0.85em;
+        &_deadline {
+          margin-top: 0;
+        }
+      }
+      &__content {
+        display: block;
+        height: 100%;
+      }
+      @media (min-width: 551px) {
+        &:hover {
+          box-shadow: 0px 0px 30px 0px #c7e7b6 !important;
+        }
+        transition: 0.5s;
+      }
+    }
+  }
+
+  &-other {
+    .what-newBlock {
+      font-size: 0.95em;
+      & > div {
+        display: flex;
+        margin-top: 20px;
+      }
+
+      &_date {
+        min-width: 100px;
+        text-align: left;
+        font-style: italic;
+        border-right: 1px solid lightgray;
+      }
+      &_disc {
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        & > div {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    width: 100%;
+  }
+}

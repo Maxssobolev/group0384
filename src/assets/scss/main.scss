@@ -1,0 +1,27 @@
+@import './variables';
+@import '../fonts/fonts.scss';
+@import './navigation.scss';
+@import './pages.scss'; //Стили к страницам
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans';
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.marker {
+  background: yellow;
+}
+
+strong {
+  font-weight: bold;
+}
