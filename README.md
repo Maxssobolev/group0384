@@ -5,8 +5,4 @@
 Для запуска сервера предусмотрена команда <strong>npm run server</strong><br>
 Для запуска клиента <strong>npm run start</strong> (эти две команды следует запускать в разных терминалах)<br><br>
 
-Настройки подключения к БД по умолчанию такие (изменить можно в файле /server/index.js):<br>
-  host: 'localhost',<br>
-  user: 'root',<br>
-  database: '0384_group',<br>
-  password: 'root'<br>
+Настройки подключения к БД изменить можно в файле /server/index.js<br>
