@@ -6,13 +6,17 @@ import moment from 'moment';
 import 'moment/locale/ru';
 import fire from '../assets/img/fire.svg';
 import fileImg from '../assets/img/file.svg';
+import { cookies } from '../index.js';
+import Solutors from '../components/Solutors';
+import ShowViews from '../components/showViews.js';
 
 export default class HW extends React.Component {
   constructor(props) {
     super(props);
-
+    this.userData = cookies.get('userData');
     this.state = {
       hw: [],
+      stud: [],
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -84,8 +88,8 @@ export default class HW extends React.Component {
             <div
               key={index}
               {...(deadline && moment().isAfter(deadline)
-                ? { style: { opacity: '.65', order: `${100 + index}` } }
-                : {})}>
+                ? { style: { opacity: '.65', order: `${100000 + index}` } }
+                : { style: { order: `${100000 - index}` } })}>
               {window.location.search == '?edit' && (
                 <div onClick={() => this.handleDelete(res.id, 'subjects_homework', res.title)}>
                   УДАЛИТЬ ЗАПИСЬ
@@ -119,7 +123,7 @@ export default class HW extends React.Component {
               <Link
                 to={{
                   pathname: `/view`,
-                  state: { res },
+                  state: { res, type: 'hw', table: 'subject_homework' },
                 }}
                 {...(deadline && moment().isAfter(deadline)
                   ? {
@@ -132,30 +136,48 @@ export default class HW extends React.Component {
                 className="info-block">
                 <span className="info-block__title">
                   {res.title} <span>| {res.subjtitle}</span>
+                  {<ShowViews table={'subject_homework'} id={res.id} />}
                 </span>
 
                 <span className="info-block__content">
                   {
                     <Markup
                       content={
-                        res.content.length > 300
-                          ? res.content.substring(0, 300) + '...'
+                        res.content.length > 150
+                          ? res.content.substring(0, 150) + '...'
                           : res.content
                       }
                     />
                   }
                 </span>
-                <span className="info-block__date">{publicDate.locale('ru').format('lll')}</span>
-                {deadline && moment().isBefore(deadline) && (
-                  <span className="info-block__date info-block__date_deadline">
-                    сдать до {deadline.locale('ru').format('lll')}
-                  </span>
-                )}
-                {deadline && moment().isAfter(deadline) && (
-                  <span className="info-block__date info-block__date_deadline">
-                    дедлайн был {deadline.locale('ru').format('lll')}
-                  </span>
-                )}
+                <div
+                  className="footer"
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignContent: 'center',
+                    marginTop: '20px',
+                  }}>
+                  <div className="solutors">
+                    <Solutors hw_id={res.id} />
+                  </div>
+
+                  <div className="date">
+                    <span className="info-block__date">
+                      {publicDate.locale('ru').format('lll')}
+                    </span>
+                    {deadline && moment().isBefore(deadline) && (
+                      <span className="info-block__date info-block__date_deadline">
+                        сдать до {deadline.locale('ru').format('lll')}
+                      </span>
+                    )}
+                    {deadline && moment().isAfter(deadline) && (
+                      <span className="info-block__date info-block__date_deadline">
+                        дедлайн был {deadline.locale('ru').format('lll')}
+                      </span>
+                    )}
+                  </div>
+                </div>
               </Link>
             </div>
           );

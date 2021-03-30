@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import CKEditor from 'ckeditor4-react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default class MainPosts extends React.Component {
   constructor(props) {
@@ -77,7 +78,16 @@ export default class MainPosts extends React.Component {
             name="main_title"
             placeholder="Название"
           />
-          <CKEditor data={this.state.data} onChange={this.onEditorChange} />
+
+          <CKEditor
+            editor={ClassicEditor}
+            data={this.state.data}
+            onChange={(event, editor) => {
+              this.setState({
+                data: editor.getData(),
+              });
+            }}
+          />
           <p>
             Актуально до:
             <input type="datetime-local" name="actual" onChange={this.handleInputChange} />

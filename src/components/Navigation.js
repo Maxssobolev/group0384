@@ -3,6 +3,9 @@ import { NavLink } from 'react-router-dom';
 import burgerMenu from '../assets/img/menu.svg';
 import exitIcon from '../assets/img/exit.svg';
 import { abort } from 'process';
+import hat from '../assets/img/hat.png';
+
+import Login from './user-utils/Login';
 
 const navLinks = [
   {
@@ -35,9 +38,14 @@ export default class Navigation extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
-      <div>
+      <div className="nav-wrapper">
+        {/*
+        |^|  need - style={{ position: 'relative' }}
+        TEMP FOR NY 
+        <div id="ng_hat">
+          <img src={hat} alt="" width={75} />
+        </div>  */}
         <nav className="site-navigation">
           <span> #0384</span>
           {this.state.width <= 991 && (
@@ -90,6 +98,13 @@ export default class Navigation extends React.Component {
             </ul>
           </div>
         )}
+        <div className="login-wrapper">
+          <Login
+            handleLogin={this.props.handleLogin}
+            isFetching={this.props.isFetching}
+            userData={this.props.userData}
+          />
+        </div>
       </div>
     );
   }

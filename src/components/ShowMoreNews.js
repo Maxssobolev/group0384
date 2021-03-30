@@ -1,98 +1,35 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
-import { Markup } from 'interweave';
-import ShowMoreNews from '../components/ShowMoreNews';
-import ShowViews from '../components/showViews.js';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
-import 'moment/locale/ru';
-
-import { sendNotification } from '../index.js';
+import { Markup } from 'interweave';
+import { Link } from 'react-router-dom';
 
 import RemainTime from '../assets/img/remain_time.png';
 
-import calendarIcon from '../assets/img/calendar.svg';
-
-import alertSound from '../assets/sounds/alert.mp3';
-import pushIcon from '../assets/img/PushIcon.jpg';
-
-export default class Home extends React.Component {
+export default class ShowMoreNews extends React.Component {
   constructor(props) {
     super(props);
-    this.audio = new Audio(alertSound);
 
     this.state = {
+      showed: false,
       error: null,
       isLoaded: false,
       posts: [],
-      postLastDate: {},
-      toChange: '',
     };
-    this.handleDelete = this.handleDelete.bind(this);
+
+    this.showMore = this.showMore.bind(this);
   }
 
-  componentDidUpdate() {
-    setTimeout(() => {
-      fetch('/api/home')
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            let isNew = true;
-            for (let x of result) {
-              if (moment(x.date).isAfter(moment(this.state.postLastDate))) {
-                document.title = 'NEW|#0384';
-                setTimeout(() => {
-                  document.title = '#0384';
-                }, 1350);
-
-                sendNotification(x.title, {
-                  body: 'Посмотри, вдруг там что-то важное',
-                  icon: pushIcon,
-                });
-                this.setState({
-                  postLastDate: x.date,
-                  isLoaded: true,
-                  posts: result,
-                  toChange: {
-                    id: x.id,
-                  },
-                });
-
-                break;
-              } else {
-                isNew = false;
-              }
-            }
-
-            if (!isNew) {
-              this.setState({
-                isLoaded: true,
-                posts: result,
-              });
-            }
-          },
-          (error) => {
-            this.setState({
-              isLoaded: true,
-              error,
-            });
-          },
-        );
-    }, 1000 * 20);
-  }
-  componentDidMount() {
-    fetch('/api/home')
+  showMore() {
+    fetch('/api/home?whole=yes')
       .then((res) => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
             posts: result,
-            postLastDate: moment(),
+            showed: true,
           });
         },
-        // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
-        // чтобы не перехватывать исключения из ошибок в самих компонентах.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -102,36 +39,18 @@ export default class Home extends React.Component {
       );
   }
 
-  handleDelete(id, tableName, title) {
-    const sended_data = {
-      id_toDelete: id,
-      table: tableName,
-    };
-
-    let proof = window.confirm('Удалить запись ' + title);
-
-    async function postData(data = {}) {
-      const response = await fetch('/delete', {
-        method: 'POST', // или 'PUT'
-        body: JSON.stringify(data), // данные могут быть 'строкой' или {объектом}!
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      return await response.json();
-    }
-    if (proof) {
-      postData(sended_data);
-    }
-
-    proof = false;
-  }
-
   render() {
     const { error, isLoaded, posts } = this.state;
 
-    if (error) {
+    if (!this.state.showed) {
+      return (
+        <div className="showMoreBtn" onClick={this.showMore}>
+          Предыдущие
+          <br />
+          записи
+        </div>
+      );
+    } else if (error) {
       return <div>Ошибка: {error.message}</div>;
     } else if (!isLoaded) {
       return (
@@ -145,7 +64,7 @@ export default class Home extends React.Component {
       );
     } else {
       return (
-        <div className="page page-home">
+        <>
           {posts.map((res, index) => {
             let stylemap = {};
             if (this.state.toChange && this.state.toChange.id == res.id) {
@@ -206,14 +125,7 @@ export default class Home extends React.Component {
                     alignItems: 'flex-end',
                     justifyContent: 'space-between',
                   }}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-end',
-                      justifyContent: 'space-between',
-                    }}>
-                    {<Markup content={the_label} />} {<ShowViews table={'news'} id={res.id} />}
-                  </div>
+                  {<Markup content={the_label} />}
                   <div
                     style={{
                       fontSize: '0.75em',
@@ -228,7 +140,7 @@ export default class Home extends React.Component {
                 <Link
                   to={{
                     pathname: `/view`,
-                    state: { res, type: 'post', table: 'news' },
+                    state: { res },
                   }}
                   className="info-block"
                   style={stylemap}
@@ -273,9 +185,7 @@ export default class Home extends React.Component {
               </div>
             );
           })}
-
-          <ShowMoreNews />
-        </div>
+        </>
       );
     }
   }

@@ -9,7 +9,24 @@ html {
   overflow-x: hidden;
   margin-right: calc(-1 * (100vw - 100%));
 }
+/*
+#scene {
+  position: fixed;
+  //left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  min-height: 100vh;
+  width: 110%;
+  z-index: -1;
+  background: url('../img/back.jpg');
+  //background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
+*/
 body {
   margin: 0;
   padding: 0;
@@ -24,4 +41,37 @@ body {
 
 strong {
   font-weight: bold;
+}
+
+//temp
+/*
+.info-block,
+.site-navigation,
+.list-item {
+  background: #fdfdfd;
+}
+
+.page-directions .list-item {
+  border-top: none;
+  border-bottom: none;
+}
+
+#ng_hat {
+  position: absolute;
+  left: 142px;
+  top: -30px;
+  transform: scale(-1, 1);
+  @media (max-width: 1200px) {
+    left: 114px;
+  }
+  @media (max-width: 992px) {
+    left: -26px;
+  }
+}*/
+
+blockquote {
+  border-left: 5px solid #bca1c1;
+  box-shadow: 0 0 3px #222222;
+
+  padding: 10px 15px;
 }

@@ -59,7 +59,7 @@ export default function Subdirect(props) {
         {!isLectoriesToDisable && (
           <Tab
             eventKey="lectories"
-            title="Записи лекций"
+            title="Материалы лекций"
             {...(isLectoriesToDisable ? { disabled: true } : {})}>
             <LectureRecords subject_id={just_subject.id} />
           </Tab>

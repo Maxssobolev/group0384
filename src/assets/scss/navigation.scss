@@ -1,6 +1,26 @@
+.nav-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-wrapper {
+  width: 77px;
+  cursor: pointer;
+}
+
+.loadIcon {
+  transition: 0.75s;
+  animation: loading 0.75s infinite;
+  padding: 5px 11px;
+}
+@keyframes loading {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .site-navigation {
   font-family: Monitorica;
-  margin: 0 auto 50px auto;
   height: 65px;
   width: 70%;
   background: white;

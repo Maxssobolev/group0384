@@ -6,6 +6,45 @@ export default function Other() {
       <div className="what-newBlock">
         Список обновлений:
         <div>
+          <div className="what-newBlock_date">04.03.2021</div>
+          <div className="what-newBlock_disc">
+            <div>
+              Добавлен счетчик просмотров на записях
+              <br />
+              Исправлены баги.
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="what-newBlock_date">03.03.2021</div>
+          <div className="what-newBlock_disc">
+            <div>
+              Личный кабинет
+              <br />
+              Полное расписание
+              <br />
+              На главной отображаются только актуальные новости
+              <br />
+              <div>Push-уведомления о последних новостях</div>
+              <div>
+                Возможность отметиться о том, что д/з выполнено (после этого на карточке с домашним
+                заданием появляется кружочек с твоей фотографией) <br />
+                <i>P.S. Для этого нужно авторизироваться на сайте</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="what-newBlock_date">20.12.2020</div>
+          <div className="what-newBlock_disc">
+            <div>
+              Рядом с расписанием добавлен второй кружок красного цвета - он открывает окно с
+              расписанием всех КР и зачетов (добавлено временно, исчезнет после сдачи последнего
+              предмета)
+            </div>
+          </div>
+        </div>
+        <div>
           <div className="what-newBlock_date">18.12.2020</div>
           <div className="what-newBlock_disc">
             <div>

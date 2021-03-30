@@ -6,6 +6,8 @@ import breaking from '../assets/img/break.svg';
 import chill from '../assets/img/chill.svg';
 
 import TodayTimeTable from './todayTimeTable';
+import TempExamTable from './TempExamTable';
+
 import moment from 'moment';
 
 export default class Calendar extends React.Component {
@@ -17,6 +19,7 @@ export default class Calendar extends React.Component {
       nextSub: '',
       time: Date.now(),
       calendar: [],
+      week_is: '',
     };
   }
 
@@ -27,9 +30,11 @@ export default class Calendar extends React.Component {
 
     const apiUrl = `/api/timetable/?day=${weekday}`;
     axios.get(apiUrl).then((resp) => {
-      if (resp.data.length > 0) {
+      console.log(resp.data);
+      if (resp.data.rows.length > 0) {
         this.setState({
-          calendar: resp.data,
+          calendar: resp.data.rows,
+          week_is: resp.data.week_is,
         });
       }
     });
@@ -148,7 +153,9 @@ export default class Calendar extends React.Component {
   render() {
     return (
       <div className="calendar-wrapper">
-        <TodayTimeTable timetable={this.state.calendar} />
+        {/*<TempExamTable /> */}
+        <TodayTimeTable />
+
         <div className="calendar">
           {!this.state.currentSub && (
             <div
@@ -215,6 +222,10 @@ export default class Calendar extends React.Component {
                 {!this.state.nextSub.link && this.state.nextSub.name}
               </span>
             </div>
+          )}
+
+          {this.state.currentSub && (
+            <div className="week_is">сейчас {this.state.week_is} неделя.</div>
           )}
         </div>
       </div>

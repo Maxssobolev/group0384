@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import CKEditor from 'ckeditor4-react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default class HomeWork extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class HomeWork extends React.Component {
     this.state = {
       data: '',
       subject: 1,
+      subj: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -65,22 +67,37 @@ export default class HomeWork extends React.Component {
     });
   }
 
+  componentDidMount() {
+    fetch('/api/subjects')
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            subj: result,
+          });
+        },
+        (error) => {
+          this.setState({
+            error,
+          });
+        },
+      );
+  }
+
   render() {
-    console.log(this.state.subject);
     return (
       <div className="homework_create">
         <h2>Домашняя работа</h2>
 
         <form onSubmit={this.handleSubmit} method="POST">
           <select name="subject" onChange={this.handleInputChange}>
-            <option value="1" defaultValue>
-              Программирование
-            </option>
-            <option value="2">Информатика</option>
-            <option value="3">Физика</option>
-            <option value="4">Мат. анализ</option>
-            <option value="5">АиГ</option>
-            <option value="6">Философия</option>
+            {this.state.subj.map((res, index) => {
+              return (
+                <option value={res.id} defaultValue>
+                  {res.title}
+                </option>
+              );
+            })}
           </select>
 
           <input
@@ -89,7 +106,15 @@ export default class HomeWork extends React.Component {
             name="main_title"
             placeholder="Название"
           />
-          <CKEditor data={this.state.data} onChange={this.onEditorChange} />
+          <CKEditor
+            editor={ClassicEditor}
+            data={this.state.data}
+            onChange={(event, editor) => {
+              this.setState({
+                data: editor.getData(),
+              });
+            }}
+          />
           <p>
             Дедлайн:
             <input type="datetime-local" name="deadline" onChange={this.handleInputChange} />
