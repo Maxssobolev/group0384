@@ -6,6 +6,12 @@ export default function Other() {
       <div className="what-newBlock">
         Список обновлений:
         <div>
+          <div className="what-newBlock_date">30.03.2021</div>
+          <div className="what-newBlock_disc">
+            <div>Сертификат обновлен.</div>
+          </div>
+        </div>
+        <div>
           <div className="what-newBlock_date">04.03.2021</div>
           <div className="what-newBlock_disc">
             <div>

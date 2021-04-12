@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { io } from 'socket.io';
 
 /*my modules*/
 import Navigation from './components/Navigation';

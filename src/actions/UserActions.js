@@ -1,8 +1,8 @@
+import { cookies } from '../index.js';
+
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
-
-import { cookies } from '../index.js';
 
 export function handleLogin() {
   return function (dispatch) {
@@ -10,7 +10,7 @@ export function handleLogin() {
       type: LOGIN_REQUEST,
     });
 
-    //eslint-disable-next-line no-undef
+    /*eslint-disable*/
     VK.Auth.login((r) => {
       if (r.session) {
         let userData = r.session.user;
@@ -54,5 +54,6 @@ export function handleLogin() {
         });
       }
     }, 4); // запрос прав на доступ к photo
+    /*eslint-enable*/
   };
 }
